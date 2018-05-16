@@ -17,12 +17,6 @@ public:
 	void setX(float dx);
 	void setY(float dy);
 	void setXY(float dx, float dy);
-
-	/*
-	Vector2 getVector() const {
-	return Vector2(x, y);
-	}
-	*/
 };
 
 
@@ -46,12 +40,6 @@ inline void Vector2::setXY(float dx, float dy) {
 	x = dx;
 	y = dy;
 }
-
-/*
-Vector2 getVector() const {
-return Vector2(x, y);
-}
-*/
 
 class Rect
 {

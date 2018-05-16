@@ -17,7 +17,7 @@
 //Vector2 centerPos;
 //Vector2 scale;
 //float angle;
-struct SpriteData
+typedef struct _SpriteData
 {
 	char *filename;
 	int width;
@@ -25,7 +25,7 @@ struct SpriteData
 	Rect rect;
 	ALLEGRO_BITMAP *bitmap;
 	ALLEGRO_COLOR colorkey;
-};
+} SpriteData;
 
 // AnimData 정의
 // 프레임 개수
@@ -33,7 +33,7 @@ struct SpriteData
 // 현재 프레임
 // 프레임 지연 시간
 // 애니메이션 반복 여부
-struct AnimData
+typedef struct _AnimData
 {
 	int rows, cols;
 	int startFrame, endFrame;
@@ -42,7 +42,7 @@ struct AnimData
 	float animTimer;
 	bool loop;
 	bool animComplete;
-};
+} AnimData;
 
 class Sprite : public Renderable
 {
@@ -53,30 +53,44 @@ private:
 	bool visible;
 
 public:
-	Sprite();
+//	Sprite();
 	Sprite(const char *filename);
+	Sprite(const char *filename, const ALLEGRO_COLOR& colorkey);
 	~Sprite();
 
 	int getWidth() const;
 	int getHeight() const;
-	float getX() const;
-	float getY() const;
-	Vector2 getPosition() const;
+	Rect getRect() const;
+	ALLEGRO_BITMAP * getBitmap() const;
 
 	bool isFlipHorizontal() const;
 	bool isFlipVertical() const;
 
-	void setX(float dx);
-	void setY(float dy);
-	void setPosition(const Vector2& dpos);
 	void setFlipHorizontal(bool flip);
 	void setFlipVertical(bool flip);
 
-	virtual bool init() = 0;
-	virtual void draw(Graphics *g) const = 0;
-	//	virtual void draw(Graphics *g, const Rect& rc) const = 0;
-};
+	bool init();
+	void draw(Graphics *g) const;
+	//virtual void draw(Graphics *g, const Rect& rc) const = 0;
 
+	void printInfo() const {
+		printf("x, y: %f, %f\n", pos.getX(), pos.getY());
+		printf("centerPos: %f, %f\n", centerPos.getX(), centerPos.getY());
+		printf("scale(x, y): %f, %f\n", scale.getX(), scale.getY());
+		printf("angle: %f\n", angle);
+		printf("color(r, g, b, a): %f, %f, %f, %f\n", color.r, color.g, color.b, color.a);
+		printf("sprData.filename: %s\n", sprData.filename);
+		printf("sprData.width: %d\n", sprData.width);
+		printf("sprData.height: %d\n", sprData.height);
+		printf("sprData.rect.x: %d\n", sprData.rect.getX());
+		printf("sprData.rect.y: %d\n", sprData.rect.getY());
+		printf("sprData.rect.width: %d\n", sprData.rect.getWidth());
+		printf("sprData.rect.height: %d\n", sprData.rect.getHeight());
+		printf("flipHorizontal: %d\n", flipHorizontal);
+		printf("flipVertical: %d\n", flipVertical);
+		printf("visible: %d\n", visible);
+	}
+};
 
 inline int Sprite::getWidth() const {
 	return sprData.width;
@@ -86,16 +100,12 @@ inline int Sprite::getHeight() const {
 	return sprData.height;
 }
 
-inline float Sprite::getX() const {
-	return pos.getX();
+inline Rect Sprite::getRect() const {
+	return sprData.rect;
 }
 
-inline float Sprite::getY() const {
-	return pos.getY();
-}
-
-inline Vector2 Sprite::getPosition() const {
-	return pos;
+inline ALLEGRO_BITMAP * Sprite::getBitmap() const {
+	return sprData.bitmap;
 }
 
 inline bool Sprite::isFlipHorizontal() const {
@@ -104,18 +114,6 @@ inline bool Sprite::isFlipHorizontal() const {
 
 inline bool Sprite::isFlipVertical() const {
 	return flipVertical;
-}
-
-inline void Sprite::setX(float dx) {
-	pos.setX(dx);
-}
-
-inline void Sprite::setY(float dy) {
-	pos.setY(dy);
-}
-
-inline void Sprite::setPosition(const Vector2& dpos) {
-	pos.setXY(pos.getX(), pos.getY());
 }
 
 inline void Sprite::setFlipHorizontal(bool flip) {

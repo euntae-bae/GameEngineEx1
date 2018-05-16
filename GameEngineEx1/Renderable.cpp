@@ -3,7 +3,9 @@
 #include "Graphics.h"
 
 Renderable::Renderable()
-	: color(COLOR_WHITE)
+	: scale(1.0f, 1.0f), angle(0.0f), color(COLOR_WHITE)
 {
+#ifdef _DEBUG
 	puts("Renderable()");
+#endif
 }

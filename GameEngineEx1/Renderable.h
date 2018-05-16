@@ -6,6 +6,9 @@
 
 class Graphics;
 
+// Opacity -> Alpha
+// Alpha값과 Opacity(불투명도)를 구별해야 한다.
+// 버전 0.05: 구분돼 있지 않음.
 class Renderable
 {
 protected:
@@ -32,9 +35,20 @@ public:
 	unsigned char getOpacity() const;
 	float getOpacityf() const;
 
+	void setPosition(float dx, float dy);
 	void setPosition(const Vector2& dpos);
 	void setX(float dx);
 	void setY(float dy);
+	void setCenterPosition(float dx, float dy);
+	void setCenterPosition(const Vector2& dpos);
+	void setCenterX(float dx);
+	void setCenterY(float dy);
+	void setScale(float dx, float dy);
+	void setScale(const Vector2& dscale);
+	void setScaleX(float dx);
+	void setScaleY(float dy);
+	void setAngle(float da);
+	void setColor(const ALLEGRO_COLOR& dcolor);
 	void setOpacityf(float opacity);
 	void setOpacity(unsigned char opacity);
 
@@ -97,6 +111,10 @@ inline float Renderable::getOpacityf() const {
 	return color.a;
 }
 
+inline void Renderable::setPosition(float dx, float dy) {
+	pos.setXY(dx, dy);
+}
+
 inline void Renderable::setPosition(const Vector2& dpos) {
 	pos.setXY(dpos.getX(), dpos.getY());
 }
@@ -107,6 +125,46 @@ inline void Renderable::setX(float dx) {
 
 inline void Renderable::setY(float dy) {
 	pos.setY(dy);
+}
+
+inline void Renderable::setCenterPosition(float dx, float dy) {
+	centerPos.setXY(dx, dy);
+}
+
+inline void Renderable::setCenterPosition(const Vector2& dpos) {
+	centerPos.setXY(dpos.getX(), dpos.getY());
+}
+
+inline void Renderable::setCenterX(float dx) {
+	centerPos.setX(dx);
+}
+
+inline void Renderable::setCenterY(float dy) {
+	centerPos.setY(dy);
+}
+
+inline void Renderable::setScale(float dx, float dy) {
+	scale.setXY(dx, dy);
+}
+
+inline void Renderable::setScale(const Vector2& dscale) {
+	scale.setXY(dscale.getX(), dscale.getY());
+}
+
+inline void Renderable::setScaleX(float dx) {
+	scale.setX(dx);
+}
+
+inline void Renderable::setScaleY(float dy) {
+	scale.setY(dy);
+}
+
+inline void Renderable::setAngle(float da) {
+	angle = da;
+}
+
+inline void Renderable::setColor(const ALLEGRO_COLOR& dcolor) {
+	color = dcolor;
 }
 
 inline void Renderable::setOpacityf(float opacity) {

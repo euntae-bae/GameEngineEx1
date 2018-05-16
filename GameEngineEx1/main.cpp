@@ -1,5 +1,6 @@
 #include <cstdlib>
 #include "Graphics.h"
+#include "Sprite.h"
 
 int main(void)
 {
@@ -40,6 +41,11 @@ int main(void)
 	ALLEGRO_EVENT ev;
 	bool redraw = false;
 
+	Sprite *spr1 = new Sprite("sprites/spr01.png");
+	spr1->setPosition(100, 100);
+	spr1->setScale(2, 2);
+	spr1->printInfo();
+
 	while (loop)
 	{
 		al_wait_for_event(queue, &ev);
@@ -62,11 +68,13 @@ int main(void)
 		if (redraw && al_is_event_queue_empty(queue)) {
 			redraw = false;
 			g->clear();
+			spr1->draw(g);
 			al_draw_text(font, COLOR_WHITE, 20, 20, 0, "HELLO WORLD");
 			g->flip();
 		}
 	}
 
+	delete spr1;
 	al_destroy_font(font);
 	al_destroy_timer(timer);
 	al_destroy_event_queue(queue);

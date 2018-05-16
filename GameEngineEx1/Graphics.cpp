@@ -81,5 +81,8 @@ bool Graphics::init(int w, int h)
 	if (!al_init_ttf_addon())
 		result = false;
 
+	if (!al_init_image_addon())
+		result = false;
+
 	return result;
 }

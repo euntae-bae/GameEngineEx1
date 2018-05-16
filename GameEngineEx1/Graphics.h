@@ -5,6 +5,7 @@
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
+#include <allegro5/allegro_image.h>
 
 #include "Math.h"
 
@@ -32,6 +33,7 @@ public:
 	void flip() const;
 	int getScreenWidth() const;
 	int getScreenHeight() const;
+	ALLEGRO_COLOR getBackGroundColor() const;
 	ALLEGRO_DISPLAY * getDisplay() const;
 	void draw(ALLEGRO_BITMAP *bitmap, const Vector2& pos, const ALLEGRO_COLOR& tint = COLOR_WHITE) const;
 	void draw(ALLEGRO_BITMAP *bitmap, const Vector2& pos, const Rect& rect, const ALLEGRO_COLOR& tint = COLOR_WHITE) const;
@@ -56,6 +58,10 @@ inline int Graphics::getScreenWidth() const {
 
 inline int Graphics::getScreenHeight() const {
 	return height;
+}
+
+inline ALLEGRO_COLOR Graphics::getBackGroundColor() const {
+	return bgcolor;
 }
 
 inline ALLEGRO_DISPLAY * Graphics::getDisplay() const {
