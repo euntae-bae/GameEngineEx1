@@ -35,6 +35,8 @@ int main(void)
 	al_register_event_source(queue, al_get_timer_event_source(timer));
 	al_register_event_source(queue, al_get_display_event_source(g->getDisplay()));
 
+	al_start_timer(timer);
+
 	ALLEGRO_EVENT ev;
 	bool redraw = false;
 
@@ -60,6 +62,7 @@ int main(void)
 		if (redraw && al_is_event_queue_empty(queue)) {
 			redraw = false;
 			g->clear();
+			al_draw_text(font, COLOR_WHITE, 20, 20, 0, "HELLO WORLD");
 			g->flip();
 		}
 	}
