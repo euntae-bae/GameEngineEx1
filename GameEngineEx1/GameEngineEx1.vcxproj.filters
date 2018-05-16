@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="fonts">
+      <UniqueIdentifier>{57e42506-0d96-4e30-83cf-b26710406cc9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sprites">
+      <UniqueIdentifier>{56e3a629-b964-4bc9-acd6-8f413e3c73be}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -24,10 +30,83 @@
     <ClCompile Include="Graphics.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Math.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderable.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Graphics.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Math.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderable.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="fonts\consola.ttf">
+      <Filter>fonts</Filter>
+    </Font>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="sprites\fliegt w0000.bmp">
+      <Filter>sprites</Filter>
+    </Image>
+    <Image Include="sprites\fliegt w0001.bmp">
+      <Filter>sprites</Filter>
+    </Image>
+    <Image Include="sprites\fliegt w0002.bmp">
+      <Filter>sprites</Filter>
+    </Image>
+    <Image Include="sprites\fliegt w0003.bmp">
+      <Filter>sprites</Filter>
+    </Image>
+    <Image Include="sprites\fliegt w0004.bmp">
+      <Filter>sprites</Filter>
+    </Image>
+    <Image Include="sprites\fliegt w0005.bmp">
+      <Filter>sprites</Filter>
+    </Image>
+    <Image Include="sprites\fliegt w0006.bmp">
+      <Filter>sprites</Filter>
+    </Image>
+    <Image Include="sprites\fliegt w0007.bmp">
+      <Filter>sprites</Filter>
+    </Image>
+    <Image Include="sprites\fliegt w0008.bmp">
+      <Filter>sprites</Filter>
+    </Image>
+    <Image Include="sprites\spr01.png">
+      <Filter>sprites</Filter>
+    </Image>
+    <Image Include="sprites\spr01_nt.png">
+      <Filter>sprites</Filter>
+    </Image>
+    <Image Include="sprites\spr02.png">
+      <Filter>sprites</Filter>
+    </Image>
   </ItemGroup>
 </Project>
