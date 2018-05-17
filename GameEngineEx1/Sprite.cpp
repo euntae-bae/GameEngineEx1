@@ -55,12 +55,13 @@ bool Sprite::init()
 
 	flipHorizontal = false;
 	flipVertical = false;
-	visible = true;
 
 	return result;
 }
 
 void Sprite::draw(Graphics *g) const
 {
-	g->draw(sprData.bitmap, pos, centerPos, sprData.rect, scale, angle, color);
+	if (visible) {
+		g->draw(sprData.bitmap, pos, centerPos, sprData.rect, scale, angle, flipHorizontal, flipVertical, color);
+	}
 }

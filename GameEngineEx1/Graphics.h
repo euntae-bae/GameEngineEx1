@@ -12,7 +12,7 @@
 const int DEFAULT_SCREEN_WIDTH = 640;
 const int DEFAULT_SCREEN_HEIGHT = 480;
 
-#define COLOR_BLACK	al_mab_rgb(0, 0, 0)
+#define COLOR_BLACK	al_map_rgb(0, 0, 0)
 #define COLOR_WHITE	al_map_rgb(255, 255, 255)
 #define COLOR_RED	al_map_rgb(255, 0, 0)
 #define COLOR_GREEN	al_map_rgb(0, 255, 0)
@@ -37,8 +37,9 @@ public:
 	ALLEGRO_DISPLAY * getDisplay() const;
 	void draw(ALLEGRO_BITMAP *bitmap, const Vector2& pos, const ALLEGRO_COLOR& tint = COLOR_WHITE) const;
 	void draw(ALLEGRO_BITMAP *bitmap, const Vector2& pos, const Rect& rect, const ALLEGRO_COLOR& tint = COLOR_WHITE) const;
-	void draw(ALLEGRO_BITMAP *bitmap, const Vector2& pos, const Vector2& centerPos, const Vector2& scale, float angle, const ALLEGRO_COLOR& tint = al_map_rgb(255, 255, 255)) const;
-	void draw(ALLEGRO_BITMAP *bitmap, const Vector2& pos, const Vector2& centerPos, const Rect& rect, const Vector2& scale, float angle, const ALLEGRO_COLOR& tint = al_map_rgb(255, 255, 255)) const;
+	void draw(ALLEGRO_BITMAP *bitmap, const Vector2& pos, const Vector2& centerPos, const Vector2& scale, float angle, const ALLEGRO_COLOR& tint = COLOR_WHITE) const;
+	void draw(ALLEGRO_BITMAP *bitmap, const Vector2& pos, const Vector2& centerPos, const Rect& rect, const Vector2& scale, float angle, const ALLEGRO_COLOR& tint = COLOR_WHITE) const;
+	void draw(ALLEGRO_BITMAP *bitmap, const Vector2& pos, const Vector2& centerPos, const Rect& rect, const Vector2& scale, float angle, bool flipH, bool flipV, const ALLEGRO_COLOR& tint = COLOR_WHITE) const;
 	bool init(int w = DEFAULT_SCREEN_WIDTH, int h = DEFAULT_SCREEN_HEIGHT);
 };
 

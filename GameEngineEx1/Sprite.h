@@ -44,13 +44,13 @@ typedef struct _AnimData
 	bool animComplete;
 } AnimData;
 
+// version 0.06: visible ¸â¹ö°¡ Renderable·Î ÀÌÀüµÊ
 class Sprite : public Renderable
 {
 private:
 	SpriteData sprData;
 	bool flipHorizontal;
 	bool flipVertical;
-	bool visible;
 
 public:
 //	Sprite();
@@ -68,11 +68,14 @@ public:
 
 	void setFlipHorizontal(bool flip);
 	void setFlipVertical(bool flip);
+	void toggleFlipHorizontal();
+	void toggleFlipVertical();
 
 	bool init();
 	void draw(Graphics *g) const;
 	//virtual void draw(Graphics *g, const Rect& rc) const = 0;
 
+#ifdef _DEBUG
 	void printInfo() const {
 		printf("x, y: %f, %f\n", pos.getX(), pos.getY());
 		printf("centerPos: %f, %f\n", centerPos.getX(), centerPos.getY());
@@ -90,6 +93,7 @@ public:
 		printf("flipVertical: %d\n", flipVertical);
 		printf("visible: %d\n", visible);
 	}
+#endif
 };
 
 inline int Sprite::getWidth() const {
@@ -122,6 +126,14 @@ inline void Sprite::setFlipHorizontal(bool flip) {
 
 inline void Sprite::setFlipVertical(bool flip) {
 	flipVertical = flip;
+}
+
+inline void Sprite::toggleFlipHorizontal() {
+	flipHorizontal = !flipHorizontal;
+}
+
+inline void Sprite::toggleFlipVertical() {
+	flipVertical = !flipVertical;
 }
 
 #endif

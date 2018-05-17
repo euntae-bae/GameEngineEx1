@@ -45,6 +45,9 @@
     <ClCompile Include="Renderable.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="MyGame.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Graphics.h">
@@ -63,6 +66,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Input.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="MyGame.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
@@ -106,6 +112,9 @@
       <Filter>sprites</Filter>
     </Image>
     <Image Include="sprites\spr02.png">
+      <Filter>sprites</Filter>
+    </Image>
+    <Image Include="sprites\spr03.png">
       <Filter>sprites</Filter>
     </Image>
   </ItemGroup>

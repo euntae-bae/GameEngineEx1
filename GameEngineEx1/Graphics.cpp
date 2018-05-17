@@ -54,6 +54,31 @@ void Graphics::draw(ALLEGRO_BITMAP *bitmap, const Vector2& pos, const Vector2& c
 		0);
 }
 
+void Graphics::draw(ALLEGRO_BITMAP *bitmap, const Vector2& pos, const Vector2& centerPos, const Rect& rect, const Vector2& scale, float angle, bool flipH, bool flipV, const ALLEGRO_COLOR& tint) const
+{
+	int flags = 0;
+	if (flipH)
+		flags |= ALLEGRO_FLIP_HORIZONTAL;
+	if (flipV)
+		flags |= ALLEGRO_FLIP_VERTICAL;
+
+	al_draw_tinted_scaled_rotated_bitmap_region(
+		bitmap,
+		rect.getX(),
+		rect.getY(),
+		rect.getWidth(),
+		rect.getHeight(),
+		tint,
+		centerPos.getX(),
+		centerPos.getY(),
+		pos.getX(),
+		pos.getY(),
+		scale.getX(),
+		scale.getY(),
+		angle,
+		flags);
+}
+
 bool Graphics::init(int w, int h)
 {
 	bool result = true;

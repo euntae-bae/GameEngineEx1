@@ -166,6 +166,10 @@
     </ClCompile>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Math.cpp" />
+    <ClCompile Include="MyGame.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Renderable.cpp" />
     <ClCompile Include="Sprite.cpp" />
   </ItemGroup>
@@ -180,6 +184,10 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="Math.h" />
+    <ClInclude Include="MyGame.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="Renderable.h" />
     <ClInclude Include="Sprite.h" />
   </ItemGroup>
@@ -199,6 +207,7 @@
     <Image Include="sprites\spr01.png" />
     <Image Include="sprites\spr01_nt.png" />
     <Image Include="sprites\spr02.png" />
+    <Image Include="sprites\spr03.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
