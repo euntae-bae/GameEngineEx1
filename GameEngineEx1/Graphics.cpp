@@ -7,35 +7,40 @@ Graphics::Graphics()
 }
 
 Graphics::Graphics(int w, int h)
+	: width(w), height(h)
 {
 	puts("Graphics::Graphics(int, int)");
 
-	if (!init(w, h))
+	if (!init())
 		puts("failed init()");
 }
 
 Graphics::~Graphics()
 {
-	al_destroy_display(display);
+	if (display) {
+		al_destroy_display(display);
+	}
 	puts("Graphics::~Graphics()");
 }
 
-void Graphics::draw(ALLEGRO_BITMAP *bitmap, const Vector2& pos, const ALLEGRO_COLOR& tint) const
+void Graphics::draw(ALLEGRO_BITMAP *bitmap, const Vector2& pos, const Color& tint) const
 {
 	al_draw_tinted_bitmap(bitmap, tint, pos.getX(), pos.getY(), 0);
 }
 
-void Graphics::draw(ALLEGRO_BITMAP *bitmap, const Vector2& pos, const Rect& rect, const ALLEGRO_COLOR& tint) const
+void Graphics::draw(ALLEGRO_BITMAP *bitmap, const Vector2& pos, const Rect& rect, const Color& tint) const
 {
 	al_draw_tinted_bitmap_region(bitmap, tint, rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight(), pos.getX(), pos.getY(), 0);
 }
 
-void Graphics::draw(ALLEGRO_BITMAP *bitmap, const Vector2& pos, const Vector2& centerPos, const Vector2& scale, float angle, const ALLEGRO_COLOR& tint) const
+void Graphics::draw(ALLEGRO_BITMAP *bitmap, const Vector2& pos, const Vector2& centerPos, 
+	const Vector2& scale, float angle, const Color& tint) const
 {
 	al_draw_tinted_scaled_rotated_bitmap(bitmap, tint, centerPos.getX(), centerPos.getY(), pos.getX(), pos.getY(), scale.getX(), scale.getY(), angle, 0);
 }
 
-void Graphics::draw(ALLEGRO_BITMAP *bitmap, const Vector2& pos, const Vector2& centerPos, const Rect& rect, const Vector2& scale, float angle, const ALLEGRO_COLOR& tint) const
+void Graphics::draw(ALLEGRO_BITMAP *bitmap, const Vector2& pos, const Vector2& centerPos, 
+	const Rect& rect, const Vector2& scale, float angle, const Color& tint) const
 {
 	al_draw_tinted_scaled_rotated_bitmap_region(
 		bitmap,
@@ -54,7 +59,9 @@ void Graphics::draw(ALLEGRO_BITMAP *bitmap, const Vector2& pos, const Vector2& c
 		0);
 }
 
-void Graphics::draw(ALLEGRO_BITMAP *bitmap, const Vector2& pos, const Vector2& centerPos, const Rect& rect, const Vector2& scale, float angle, bool flipH, bool flipV, const ALLEGRO_COLOR& tint) const
+void Graphics::draw(ALLEGRO_BITMAP *bitmap, const Vector2& pos, const Vector2& centerPos, 
+	const Rect& rect, const Vector2& scale, float angle, 
+	bool flipH, bool flipV, const Color& tint) const
 {
 	int flags = 0;
 	if (flipH)
@@ -79,11 +86,8 @@ void Graphics::draw(ALLEGRO_BITMAP *bitmap, const Vector2& pos, const Vector2& c
 		flags);
 }
 
-bool Graphics::init(int w, int h)
+bool Graphics::init()
 {
-	bool result = true;
-	width = w;
-	height = h;
 	bgcolor = COLOR_BLUE;
 
 #ifdef _DEBUG
@@ -97,17 +101,33 @@ bool Graphics::init(int w, int h)
 #endif
 
 	display = al_create_display(width, height);
-	if (!display)
-		result = false;
+	if (!display) {
+#ifdef _DEBUG
+		fputs("failed to create display.\n", stderr);
+#endif
+		return false;
+	}
 
-	if (!al_init_font_addon())
-		result = false;
+	if (!al_init_font_addon()) {
+#ifdef _DEBUG
+		fputs("Error: al_init_font_addon()\n", stderr);
+#endif
+		return false;
+	}
 
-	if (!al_init_ttf_addon())
-		result = false;
+	if (!al_init_ttf_addon()) {
+#ifdef _DEBUG
+		fputs("Error: al_init_ttf_addon()\n", stderr);
+#endif
+		return false;
+	}
 
-	if (!al_init_image_addon())
-		result = false;
+	if (!al_init_image_addon()) {
+#ifdef _DEBUG
+		fputs("Error: al_init_image_addon()\n", stderr);
+#endif
+		return false;
+	}
 
-	return result;
+	return true;
 }

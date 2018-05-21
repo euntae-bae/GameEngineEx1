@@ -24,7 +24,7 @@ typedef struct _SpriteData
 	int height;
 	Rect rect;
 	ALLEGRO_BITMAP *bitmap;
-	ALLEGRO_COLOR colorkey;
+	Color colorkey;
 } SpriteData;
 
 // AnimData Á¤ÀÇ
@@ -55,7 +55,7 @@ private:
 public:
 //	Sprite();
 	Sprite(const char *filename);
-	Sprite(const char *filename, const ALLEGRO_COLOR& colorkey);
+	Sprite(const char *filename, const Color& colorkey);
 	~Sprite();
 
 	int getWidth() const;

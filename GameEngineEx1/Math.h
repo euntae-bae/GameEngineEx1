@@ -3,6 +3,9 @@
 
 #include <cstdio>
 
+const double PI = 3.14159265;
+const double RT2 = 1.41421;
+
 class Vector2
 {
 private:

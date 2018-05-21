@@ -1,15 +1,16 @@
 #ifndef __RENDERABLE_H__
 #define __RENDERABLE_H__
 
-#include <allegro5/allegro.h>
 #include "Math.h"
-
-class Graphics;
+#include "Graphics.h"
 
 // Opacity -> Alpha
 // Alpha값과 Opacity(불투명도)를 구별해야 한다.
 // 버전 0.05: 구분돼 있지 않음.
 // 버전 0.06: Alpha로 용어 통일
+// 버전 0.06a: Alpha와 Opacity 구분 -> Alpha: alpha값만 조정, opacity: 투명도 전체 조정
+// alpha 값을 조정할 때와 opacity값을 조정할 때 충돌 가능성
+
 class Renderable
 {
 protected:
@@ -17,7 +18,8 @@ protected:
 	Vector2 centerPos;
 	Vector2 scale;
 	float angle;
-	ALLEGRO_COLOR color;
+	Color color;
+	float opacity;
 	bool visible;
 
 public:
@@ -34,9 +36,10 @@ public:
 	float getScaleX() const;
 	float getScaleY() const;
 	float getAngle() const;
-	ALLEGRO_COLOR getColor() const;
+	Color getColor() const;
 	unsigned char getAlpha() const;
 	float getAlphaf() const;
+	float getOpacityf();
 	bool isVisible() const;
 
 	void setPosition(float dx, float dy);
@@ -52,9 +55,10 @@ public:
 	void setScaleX(float dx);
 	void setScaleY(float dy);
 	void setAngle(float da);
-	void setColor(const ALLEGRO_COLOR& dcolor);
-	void setAlphaf(float opacity);
-	void setAlpha(unsigned char opacity);
+	void setColor(const Color& dcolor);
+	void setAlphaf(float dalpha);
+	void setAlpha(unsigned char dalpha);
+	void setOpacityf(float dopacity);
 	void setVisible(bool dv);
 	void toggleVisible();
 
@@ -103,7 +107,7 @@ inline float Renderable::getAngle() const {
 	return angle;
 }
 
-inline ALLEGRO_COLOR Renderable::getColor() const {
+inline Color Renderable::getColor() const {
 	return color;
 }
 
@@ -115,6 +119,11 @@ inline unsigned char Renderable::getAlpha() const {
 
 inline float Renderable::getAlphaf() const {
 	return color.a;
+}
+
+inline float Renderable::getOpacityf() {
+	opacity = getAlphaf();
+	return opacity;
 }
 
 inline bool Renderable::isVisible() const {
@@ -173,17 +182,25 @@ inline void Renderable::setAngle(float da) {
 	angle = da;
 }
 
-inline void Renderable::setColor(const ALLEGRO_COLOR& dcolor) {
+inline void Renderable::setColor(const Color& dcolor) {
 	color = dcolor;
 }
 
-inline void Renderable::setAlphaf(float da) {
-	color.a = da;
+inline void Renderable::setAlphaf(float dalpha) {
+	color.a = dalpha;
 }
 
-inline void Renderable::setAlpha(unsigned char da) {
-	ALLEGRO_COLOR nColor = al_map_rgba(color.r, color.g, color.b, da);
+inline void Renderable::setAlpha(unsigned char dalpha) {
+	Color nColor = al_map_rgba(color.r, color.g, color.b, dalpha);
 	color = nColor;
+}
+
+inline void Renderable::setOpacityf(float dopacity) {
+	opacity = dopacity;
+	setAlphaf(opacity);
+	color.r *= opacity;
+	color.g *= opacity;
+	color.b *= opacity;
 }
 
 inline void Renderable::setVisible(bool dv) {

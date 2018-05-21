@@ -18,12 +18,14 @@ const int DEFAULT_SCREEN_HEIGHT = 480;
 #define COLOR_GREEN	al_map_rgb(0, 255, 0)
 #define COLOR_BLUE	al_map_rgb(0, 0, 255)
 
+typedef ALLEGRO_COLOR Color;
+
 class Graphics
 {
 private:
 	ALLEGRO_DISPLAY *display;
 	int width, height; // 디스플레이의 너비와 높이
-	ALLEGRO_COLOR bgcolor;
+	Color bgcolor;
 public:
 	Graphics();
 	Graphics(int w, int h);
@@ -33,14 +35,16 @@ public:
 	void flip() const;
 	int getScreenWidth() const;
 	int getScreenHeight() const;
-	ALLEGRO_COLOR getBackGroundColor() const;
+	Color getBackGroundColor() const;
 	ALLEGRO_DISPLAY * getDisplay() const;
-	void draw(ALLEGRO_BITMAP *bitmap, const Vector2& pos, const ALLEGRO_COLOR& tint = COLOR_WHITE) const;
-	void draw(ALLEGRO_BITMAP *bitmap, const Vector2& pos, const Rect& rect, const ALLEGRO_COLOR& tint = COLOR_WHITE) const;
-	void draw(ALLEGRO_BITMAP *bitmap, const Vector2& pos, const Vector2& centerPos, const Vector2& scale, float angle, const ALLEGRO_COLOR& tint = COLOR_WHITE) const;
-	void draw(ALLEGRO_BITMAP *bitmap, const Vector2& pos, const Vector2& centerPos, const Rect& rect, const Vector2& scale, float angle, const ALLEGRO_COLOR& tint = COLOR_WHITE) const;
-	void draw(ALLEGRO_BITMAP *bitmap, const Vector2& pos, const Vector2& centerPos, const Rect& rect, const Vector2& scale, float angle, bool flipH, bool flipV, const ALLEGRO_COLOR& tint = COLOR_WHITE) const;
-	bool init(int w = DEFAULT_SCREEN_WIDTH, int h = DEFAULT_SCREEN_HEIGHT);
+	void showCursor();
+	void hideCursor();
+	void draw(ALLEGRO_BITMAP *bitmap, const Vector2& pos, const Color& tint = COLOR_WHITE) const;
+	void draw(ALLEGRO_BITMAP *bitmap, const Vector2& pos, const Rect& rect, const Color& tint = COLOR_WHITE) const;
+	void draw(ALLEGRO_BITMAP *bitmap, const Vector2& pos, const Vector2& centerPos, const Vector2& scale, float angle, const Color& tint = COLOR_WHITE) const;
+	void draw(ALLEGRO_BITMAP *bitmap, const Vector2& pos, const Vector2& centerPos, const Rect& rect, const Vector2& scale, float angle, const Color& tint = COLOR_WHITE) const;
+	void draw(ALLEGRO_BITMAP *bitmap, const Vector2& pos, const Vector2& centerPos, const Rect& rect, const Vector2& scale, float angle, bool flipH, bool flipV, const Color& tint = COLOR_WHITE) const;
+	bool init();
 };
 
 inline void Graphics::clear() const
@@ -61,12 +65,19 @@ inline int Graphics::getScreenHeight() const {
 	return height;
 }
 
-inline ALLEGRO_COLOR Graphics::getBackGroundColor() const {
+inline Color Graphics::getBackGroundColor() const {
 	return bgcolor;
 }
 
 inline ALLEGRO_DISPLAY * Graphics::getDisplay() const {
 	return display;
+}
+
+inline void Graphics::showCursor() {
+	al_show_mouse_cursor(display);
+}
+inline void Graphics::hideCursor() {
+	al_hide_mouse_cursor(display);
 }
 
 #endif

@@ -4,7 +4,7 @@
 // TODO: Exception Handling
 
 Game::Game(const char *title)
-	: gameLoop(true)
+	: fps(60.0f), gameLoop(true)
 {
 #ifdef _DEBUG
 	puts("Game(const char*)");
@@ -14,7 +14,7 @@ Game::Game(const char *title)
 	strcpy(gameTitle, title);
 
 	if (!init()) {
-		fprintf(stderr, "failed to initialize Game\n");
+		fprintf(stderr, "Error: Game::init()\n");
 		// throw exception(...);
 	}
 }
@@ -27,33 +27,61 @@ Game::~Game()
 	}
 	if(eventQueue)
 		al_destroy_event_queue(eventQueue);
+	if (mainTimer)
+		al_destroy_timer(mainTimer);
 	delete graphics;
+	delete input;
 }
 
 bool Game::init()
 {
-	bool result = true;
-
-	puts("Game::init(const char*)");
+#ifdef _DEBUG
+	puts("Game::init()");
+#endif
 	if (!al_init()) {
-		fprintf(stderr, "failed to init allegro.\n");
+		fprintf(stderr, "Error: al_init()\n");
 		return false;
 	}
 
-	al_install_keyboard();
-	al_install_mouse();
-
 	eventQueue = al_create_event_queue();
+	if (!eventQueue) {
+		fputs("Error: al_create_event_queue()\n", stderr);
+		return false;
+	}
 
+	mainTimer = al_create_timer(1.0f / fps);
+	if (!mainTimer) {
+		fputs("Error: al_create_timer()\n", stderr);
+		return false;
+	}
 	graphics = new Graphics();
+	input = new Input();
 
 	al_register_event_source(eventQueue, al_get_keyboard_event_source());
 	al_register_event_source(eventQueue, al_get_mouse_event_source());
-	//	al_register_event_source(eventQueue, al_get_timer_event_source(timer));
-	// 타이머는 
+	al_register_event_source(eventQueue, al_get_timer_event_source(mainTimer));
 	al_register_event_source(eventQueue, al_get_display_event_source(graphics->getDisplay()));
 	
 	al_set_window_title(graphics->getDisplay(), gameTitle);
+	al_start_timer(mainTimer);
+	return true;
+}
 
-	return result;
+void Game::getInput()
+{
+	input->getKeyState();
+	input->getMouseState();
+}
+
+//void Game::update();
+//
+//void Game::draw();
+
+void Game::loop()
+{
+	while (gameLoop) {
+		getInput();
+		update();
+		draw();
+	}
 }

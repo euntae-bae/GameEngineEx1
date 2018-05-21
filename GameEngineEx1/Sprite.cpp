@@ -13,11 +13,11 @@ Sprite::Sprite(const char *filename)
 	}
 }
 
-Sprite::Sprite(const char *filename, const ALLEGRO_COLOR& colorkey)
+Sprite::Sprite(const char *filename, const Color& colorkey)
 	: Sprite(filename)
 {
 #ifdef _DEBUG
-	puts("Sprite::Sprite(const char *filename, const ALLEGRO_COLOR& colorkey)");
+	puts("Sprite::Sprite(const char *filename, const Color& colorkey)");
 #endif
 	sprData.colorkey = colorkey;
 	al_convert_mask_to_alpha(sprData.bitmap, sprData.colorkey);
@@ -30,6 +30,9 @@ Sprite::~Sprite()
 #endif
 	if (sprData.filename) {
 		delete[] sprData.filename;
+	}
+	if (sprData.bitmap) {
+		al_destroy_bitmap(sprData.bitmap);
 	}
 }
 
