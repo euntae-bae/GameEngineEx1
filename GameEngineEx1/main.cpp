@@ -27,7 +27,7 @@ int main(void)
 	al_install_keyboard();
 	al_install_mouse();
 
-	g = new Graphics();
+	g = new Graphics(640, 480, false);
 	input = new Input();
 	
 	queue = al_create_event_queue();
@@ -60,6 +60,8 @@ int main(void)
 	spr2->printInfo();
 
 	float speed = 5.0f;
+	static bool fullscr = g->isFullScreen();
+	static bool resizable = g->isResizable();
 
 	while (loop)
 	{
@@ -73,6 +75,12 @@ int main(void)
 			{
 			case ALLEGRO_KEY_ESCAPE:
 				loop = false;
+				break;
+			case ALLEGRO_KEY_F2:
+				fullscr = !fullscr;
+				printf("fullscr: %d\n", fullscr);
+				g->setFullScreen(fullscr);
+				printf("g->isFullScreen(): %d\n", g->isFullScreen());
 				break;
 			//case ALLEGRO_KEY_UP:
 			//	currentOpacity += 0.1f;

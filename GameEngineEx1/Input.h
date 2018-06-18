@@ -10,6 +10,11 @@ const int KEY_ARRAY_LENGTH = 256;
 // isKeyDown을 static으로 처리해야 할까?
 // 버전 0.06: 아직까지는 static은 고려하지 않고 설계할 것.
 
+// TODO:
+// - isKeyTriggered() 함수 구현
+// - 키보드 제어 관련 함수들 추가
+// - 마우스 휠 관련 함수들 추가
+
 // Mouse Button
 // 1: primary(left)
 // 2: secondary(right)

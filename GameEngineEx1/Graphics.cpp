@@ -7,10 +7,22 @@ Graphics::Graphics()
 }
 
 Graphics::Graphics(int w, int h)
-	: width(w), height(h)
+	: Graphics(w, h, false)
 {
 	puts("Graphics::Graphics(int, int)");
+}
 
+Graphics::Graphics(int w, int h, bool fullscreen, bool resize)
+	: width(w), height(h), fullScreen(fullscreen), resizable(resize)
+{
+	puts("Graphics::Graphics(int, int, bool, bool)");
+	int nflag = 0;
+	if (fullScreen)
+		nflag |= ALLEGRO_FULLSCREEN;
+	if (resizable)
+		nflag |= ALLEGRO_RESIZABLE;
+
+	al_set_new_display_flags(nflag);
 	if (!init())
 		puts("failed init()");
 }

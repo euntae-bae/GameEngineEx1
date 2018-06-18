@@ -7,6 +7,11 @@ const int MAX_TITLE_LENGTH = 256;
 // game state -> pause(); resume(); ... etc
 // save, load
 
+// TODO: version 0.07
+// 프레임 레이트 기능 구현
+// const char * getTitle() const;
+// void setTitle(const char *title);
+
 class Game
 {
 protected:

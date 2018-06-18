@@ -25,10 +25,10 @@ Game::~Game()
 	if (gameTitle) {
 		delete[] gameTitle;
 	}
-	if(eventQueue)
-		al_destroy_event_queue(eventQueue);
 	if (mainTimer)
 		al_destroy_timer(mainTimer);
+	if(eventQueue)
+		al_destroy_event_queue(eventQueue);
 	delete graphics;
 	delete input;
 }
