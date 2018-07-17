@@ -19,9 +19,28 @@ MyGame::~MyGame()
 #endif
 }
 
+void MyGame::update()
+{
+#ifdef _DEBUG
+	puts("MyGame::update()");
+#endif
+}
+
+void MyGame::draw()
+{
+#ifdef _DEBUG
+	puts("MyGame::draw()");
+#endif
+	graphics->clear();
+	states.back()->draw(graphics);
+	graphics->flip();
+}
+
 bool MyGame::init()
 {
 #ifdef _DEBUG
 	puts("MyGame::init()");
 #endif
+	pushState(&logo);
+	return true;
 }

@@ -2,6 +2,7 @@
 #define __MATH_H__
 
 #include <cstdio>
+#include <cmath>
 
 const double PI = 3.14159265;
 const double RT2 = 1.41421;
@@ -13,15 +14,28 @@ private:
 public:
 	Vector2();
 	Vector2(float _x, float _y);
+	Vector2(const Vector2& rhs);
 	~Vector2();
 
+	float norm() const;
 	float getX() const;
 	float getY() const;
 	void setX(float dx);
 	void setY(float dy);
 	void setXY(float dx, float dy);
+	void setXY(const Vector2& rhs);
+	Vector2 operator+(const Vector2& rhs) const;
+	Vector2 operator-(const Vector2& rhs) const;
+	Vector2 operator*(const Vector2& rhs) const;
+	Vector2& operator=(const Vector2& rhs);
+	Vector2& operator+=(const Vector2& rhs);
+	Vector2& operator-=(const Vector2& rhs);
+	Vector2& operator*=(const Vector2& rhs);
 };
 
+inline float Vector2::norm() const {
+	return sqrt((x * x) + (y * y));
+}
 
 inline float Vector2::getX() const {
 	return x;
@@ -42,6 +56,47 @@ inline void Vector2::setY(float dy) {
 inline void Vector2::setXY(float dx, float dy) {
 	x = dx;
 	y = dy;
+}
+
+inline void Vector2::setXY(const Vector2& rhs) {
+	x = rhs.x;
+	y = rhs.y;
+}
+
+inline Vector2 Vector2::operator+(const Vector2& rhs) const {
+	return Vector2(x + rhs.x, y + rhs.y);
+}
+
+inline Vector2 Vector2::operator-(const Vector2& rhs) const {
+	return Vector2(x - rhs.x, y - rhs.y);
+}
+
+inline Vector2 Vector2::operator*(const Vector2& rhs) const {
+	return Vector2(x * rhs.x, y * rhs.y);
+}
+
+inline Vector2& Vector2::operator=(const Vector2& rhs) {
+	x = rhs.x;
+	y = rhs.y;
+	return *this;
+}
+
+inline Vector2& Vector2::operator+=(const Vector2& rhs) {
+	x += rhs.x;
+	y += rhs.y;
+	return *this;
+}
+
+inline Vector2& Vector2::operator-=(const Vector2& rhs) {
+	x -= rhs.x;
+	y -= rhs.y;
+	return *this;
+}
+
+inline Vector2& Vector2::operator*=(const Vector2& rhs) {
+	x *= rhs.x;
+	y *= rhs.y;
+	return *this;
 }
 
 class Rect

@@ -3,19 +3,25 @@
 Graphics::Graphics()
 	: Graphics(DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT)
 {
+#ifdef _DEBUG
 	puts("Graphics::Graphics()");
+#endif
 }
 
 Graphics::Graphics(int w, int h)
 	: Graphics(w, h, false)
 {
+#ifdef _DEBUG
 	puts("Graphics::Graphics(int, int)");
+#endif
 }
 
 Graphics::Graphics(int w, int h, bool fullscreen, bool resize)
 	: width(w), height(h), fullScreen(fullscreen), resizable(resize)
 {
+#ifdef _DEBUG
 	puts("Graphics::Graphics(int, int, bool, bool)");
+#endif
 	int nflag = 0;
 	if (fullScreen)
 		nflag |= ALLEGRO_FULLSCREEN;
@@ -32,7 +38,9 @@ Graphics::~Graphics()
 	if (display) {
 		al_destroy_display(display);
 	}
+#ifdef _DEBUG
 	puts("Graphics::~Graphics()");
+#endif
 }
 
 void Graphics::draw(ALLEGRO_BITMAP *bitmap, const Vector2& pos, const Color& tint) const

@@ -16,6 +16,14 @@ Vector2::Vector2(float _x, float _y)
 #endif
 }
 
+Vector2::Vector2(const Vector2& rhs)
+	: Vector2(rhs.x, rhs.y)
+{
+#ifdef _DEBUG
+	puts("Vector2(const Vector2&)");
+#endif
+}
+
 Vector2::~Vector2()
 {
 #ifdef _DEBUG

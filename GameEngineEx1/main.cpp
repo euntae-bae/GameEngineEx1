@@ -27,7 +27,7 @@ int main(void)
 	al_install_keyboard();
 	al_install_mouse();
 
-	g = new Graphics(640, 480, false);
+	g = new Graphics(640, 480, false, true);
 	input = new Input();
 	
 	queue = al_create_event_queue();
@@ -52,12 +52,15 @@ int main(void)
 	Sprite *spr1 = new Sprite("sprites/spr01.png");
 	float currentOpacity = spr1->getOpacityf();
 
+#ifdef _DEBUG
 	puts("spr1:");
 	spr1->printInfo();
-
+#endif
 	Sprite *spr2 = new Sprite("sprites/spr03.png");
+#ifdef _DEBUG
 	puts("spr2: 거대 냥냥이");
 	spr2->printInfo();
+#endif
 
 	float speed = 5.0f;
 	static bool fullscr = g->isFullScreen();
@@ -82,36 +85,39 @@ int main(void)
 				g->setFullScreen(fullscr);
 				printf("g->isFullScreen(): %d\n", g->isFullScreen());
 				break;
-			//case ALLEGRO_KEY_UP:
-			//	currentOpacity += 0.1f;
-			//	if (currentOpacity > 1.0f) {
-			//		currentOpacity = 1.0f;
-			//	}
-			//	spr1->setOpacityf(currentOpacity);
-			//	break;
-			//case ALLEGRO_KEY_DOWN:
-			//	currentOpacity -= 0.1f;
-			//	if (currentOpacity < 0.1f) {
-			//		currentOpacity = 0.1f;
-			//	}
-			//	spr1->setOpacityf(currentOpacity);
-			//	break;
-			//case ALLEGRO_KEY_SPACE:
-			//	spr1->toggleVisible();
-			//	break;
-			//case ALLEGRO_KEY_H:
-			//	spr1->toggleFlipHorizontal();
-			//	printf("spr1->flipHorizontal: %d\n", spr1->isFlipHorizontal());
-			//	break;
-			//case ALLEGRO_KEY_V:
-			//	spr1->toggleFlipVertical();
-			//	printf("spr1->flipVertical: %d\n", spr1->isFlipVertical());
-			//	break;
-			//case ALLEGRO_KEY_B:
-			//	spr1->setColor(COLOR_GREEN);
-			//	break;
+#ifdef _DEBUG
+				//case ALLEGRO_KEY_UP:
+				//	currentOpacity += 0.1f;
+				//	if (currentOpacity > 1.0f) {
+				//		currentOpacity = 1.0f;
+				//	}
+				//	spr1->setOpacityf(currentOpacity);
+				//	break;
+				//case ALLEGRO_KEY_DOWN:
+				//	currentOpacity -= 0.1f;
+				//	if (currentOpacity < 0.1f) {
+				//		currentOpacity = 0.1f;
+				//	}
+				//	spr1->setOpacityf(currentOpacity);
+				//	break;
+				//case ALLEGRO_KEY_SPACE:
+				//	spr1->toggleVisible();
+				//	break;
+			case ALLEGRO_KEY_H:
+				spr1->toggleFlipHorizontal();
+				printf("spr1->flipHorizontal: %d\n", spr1->isFlipHorizontal());
+				break;
+			case ALLEGRO_KEY_V:
+				spr1->toggleFlipVertical();
+				printf("spr1->flipVertical: %d\n", spr1->isFlipVertical());
+				break;
+				//case ALLEGRO_KEY_B:
+				//	spr1->setColor(COLOR_GREEN);
+				//	break;
 			}
 			//printf("spr1->opacity: %f\n", spr1->getOpacityf());
+#endif
+			}
 		}
 		else if (ev.type == ALLEGRO_EVENT_TIMER)
 		{

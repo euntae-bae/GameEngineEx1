@@ -15,6 +15,10 @@ const int KEY_ARRAY_LENGTH = 256;
 // - 키보드 제어 관련 함수들 추가
 // - 마우스 휠 관련 함수들 추가
 
+// event source 등록을 어떻게 할 것인가?
+// Input 클래스와 분리?
+// Input 클래스 초기화 과정에 내장 -> event queue 객체의 포인터를 인수로 받아야 한다.
+
 // Mouse Button
 // 1: primary(left)
 // 2: secondary(right)
@@ -24,10 +28,12 @@ const int KEY_ARRAY_LENGTH = 256;
 class Input
 {
 private:
-	bool keyDown[KEY_ARRAY_LENGTH];
+	// bool keyDown[KEY_ARRAY_LENGTH];
 	// mouse state <- mouse axis, mouse button down
 	ALLEGRO_KEYBOARD_STATE keyState;
 	ALLEGRO_MOUSE_STATE mouseState;
+	ALLEGRO_KEYBOARD_STATE oldKeyState;
+	ALLEGRO_MOUSE_STATE oldMouseState;
 public:
 	Input();
 	~Input();
@@ -75,6 +81,7 @@ inline Vector2 Input::getMousePosition() const {
 }
 
 inline void Input::getKeyState() {
+	oldKeyState = keyState;
 	al_get_keyboard_state(&keyState);
 }
 
@@ -99,6 +106,9 @@ inline bool Input::isKeyTriggered(int keycode) {
 	//curDown = isKeyDown(keycode);
 	//if (!prevDown && curDown)
 	//	return true;
+	if (!al_key_down(&oldKeyState, keycode) && isKeyDown(keycode))
+		return true;
+
 	return false;
 }
 

@@ -38,16 +38,15 @@ Sprite::~Sprite()
 
 bool Sprite::init()
 {
+#ifdef _DEBUG
 	puts("Sprite::init()");
-	bool result = true;
-
+#endif
 	sprData.bitmap = al_load_bitmap(sprData.filename);
 	if (!sprData.bitmap) {
-		result = false;
 #ifdef _DEBUG
 		fprintf(stderr, "Error: Sprite::init(), failed to open file: %s\n", sprData.filename);
 #endif
-		return result;
+		return false;
 	}
 
 	sprData.width = al_get_bitmap_width(sprData.bitmap);
@@ -59,7 +58,7 @@ bool Sprite::init()
 	flipHorizontal = false;
 	flipVertical = false;
 
-	return result;
+	return true;
 }
 
 void Sprite::draw(Graphics *g) const
