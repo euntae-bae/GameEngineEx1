@@ -57,6 +57,9 @@
     <ClCompile Include="lab2.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="StateTitle.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Graphics.h">
@@ -87,6 +90,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="StateLogo.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="StateTitle.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

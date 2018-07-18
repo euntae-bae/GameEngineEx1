@@ -24,6 +24,9 @@ void MyGame::update()
 #ifdef _DEBUG
 	puts("MyGame::update()");
 #endif
+	if (!states.empty()) {
+		states.back()->update();
+	}
 }
 
 void MyGame::draw()

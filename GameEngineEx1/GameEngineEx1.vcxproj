@@ -181,6 +181,7 @@
     </ClCompile>
     <ClCompile Include="Renderable.cpp" />
     <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="StateTitle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h" />
@@ -202,6 +203,7 @@
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="StateLogo.h" />
+    <ClInclude Include="StateTitle.h" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="fonts\consola.ttf" />

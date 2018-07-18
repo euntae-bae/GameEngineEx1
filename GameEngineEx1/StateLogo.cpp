@@ -7,8 +7,10 @@ bool StateLogo::init()
 #ifdef _DEBUG
 	puts("StateLogo::init()");
 #endif
+	count = 0;
 	logoImage = new Sprite("sprites/logo_sample.png");
 	logoImage->setPosition(0, 0);
+	font = al_load_font("fonts/consola.ttf", 18, 0);
 	return true;
 }
 
@@ -19,6 +21,8 @@ void StateLogo::cleanup()
 #endif
 	delete logoImage;
 	logoImage = NULL;
+	al_destroy_font(font);
+	font = NULL;
 }
 
 void StateLogo::pause()
@@ -65,6 +69,9 @@ void StateLogo::update()
 #ifdef _DEBUG
 	puts("StateLogo::update()");
 #endif
+	if (count >= 1000) {
+	}
+	count++;
 }
 
 void StateLogo::draw(Graphics *g)
@@ -73,4 +80,6 @@ void StateLogo::draw(Graphics *g)
 	puts("StateLogo::draw()");
 #endif
 	logoImage->draw(g);
+	printf("count: %d\n", count);
+	al_draw_textf(font, COLOR_RED, DEFAULT_SCREEN_WIDTH - 20, 20, ALLEGRO_ALIGN_RIGHT, "count: %d", count);
 }

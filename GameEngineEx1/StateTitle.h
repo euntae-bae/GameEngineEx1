@@ -1,16 +1,13 @@
-#ifndef __STATE_LOGO_H__
-#define __STATE_LOGO_H__
+#ifndef __STATE_TITLE_H__
+#define __STATE_TITLE_H__
 
 #include "State.h"
 #include "Sprite.h"
 
-class StateLogo : public State
+class StateTitle : public State
 {
 private:
-	Sprite *logoImage;
-	ALLEGRO_FONT *font;
-	int count;
-
+	Sprite *spr;
 public:
 	bool init();
 	void cleanup();
