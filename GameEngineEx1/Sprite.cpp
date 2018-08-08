@@ -61,6 +61,29 @@ bool Sprite::init()
 	return true;
 }
 
+void Sprite::setBitmap(ALLEGRO_BITMAP *bitmap)
+{
+	if (sprData.bitmap == bitmap || bitmap == NULL) {
+		return;
+	}
+	if (sprData.bitmap) {
+		al_destroy_bitmap(sprData.bitmap);
+	}
+	sprData.bitmap = bitmap;
+}
+
+void Sprite::setBitmap(const char *filename)
+{
+	ALLEGRO_BITMAP *nbitmap = al_load_bitmap(filename);
+	if (!nbitmap) {
+		return;
+	}
+	if (sprData.bitmap) {
+		al_destroy_bitmap(sprData.bitmap);
+	}
+	sprData.bitmap = nbitmap;
+}
+
 void Sprite::draw(Graphics *g) const
 {
 	if (visible) {

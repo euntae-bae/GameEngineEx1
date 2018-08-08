@@ -1,6 +1,9 @@
 #include <cstdio>
 #include "Game.h"
 #include "StateLogo.h"
+#include "StateTitle.h"
+
+StateTitle title;
 
 bool StateLogo::init()
 {
@@ -51,12 +54,13 @@ void StateLogo::onExit()
 #ifdef _DEBUG
 	puts("StateLogo::onExit()");
 #endif
+	count = 400;
 }
 
 void StateLogo::handleEvents(Game *game)
 {
 #ifdef _DEBUG
-	puts("StateLogo::handleEvents()");
+//	puts("StateLogo::handleEvents()");
 #endif
 	if (game->getEvent().type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
 		game->close();
@@ -64,12 +68,13 @@ void StateLogo::handleEvents(Game *game)
 	}
 }
 
-void StateLogo::update()
+void StateLogo::update(Game *game)
 {
 #ifdef _DEBUG
-	puts("StateLogo::update()");
+//	puts("StateLogo::update()");
 #endif
-	if (count >= 1000) {
+	if (count >= 500) {
+		game->pushState(&title);
 	}
 	count++;
 }
@@ -77,9 +82,9 @@ void StateLogo::update()
 void StateLogo::draw(Graphics *g)
 {
 #ifdef _DEBUG
-	puts("StateLogo::draw()");
+//	puts("StateLogo::draw()");
 #endif
 	logoImage->draw(g);
-	printf("count: %d\n", count);
+//	printf("count: %d\n", count);
 	al_draw_textf(font, COLOR_RED, DEFAULT_SCREEN_WIDTH - 20, 20, ALLEGRO_ALIGN_RIGHT, "count: %d", count);
 }

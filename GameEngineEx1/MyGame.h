@@ -2,13 +2,9 @@
 #define __MY_GAME_H__
 
 #include "Game.h"
-#include "StateLogo.h"
 
 class MyGame : public Game
 {
-private:
-	StateLogo logo;
-
 public:
 	MyGame(const char *title);
 	~MyGame();

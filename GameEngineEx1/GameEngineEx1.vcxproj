@@ -169,12 +169,14 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="lab2.cpp" />
+    <ClCompile Include="Math.cpp" />
+    <ClCompile Include="StateLab1.cpp" />
+    <ClCompile Include="StateLab2.cpp" />
     <ClCompile Include="StateLogo.cpp" />
     <ClCompile Include="main.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Math.cpp" />
     <ClCompile Include="MyGame.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
@@ -202,6 +204,8 @@
     <ClInclude Include="Renderable.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="State.h" />
+    <ClInclude Include="StateLab1.h" />
+    <ClInclude Include="StateLab2.h" />
     <ClInclude Include="StateLogo.h" />
     <ClInclude Include="StateTitle.h" />
   </ItemGroup>
@@ -209,20 +213,14 @@
     <Font Include="fonts\consola.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="sprites\fliegt w0000.bmp" />
-    <Image Include="sprites\fliegt w0001.bmp" />
-    <Image Include="sprites\fliegt w0002.bmp" />
-    <Image Include="sprites\fliegt w0003.bmp" />
-    <Image Include="sprites\fliegt w0004.bmp" />
-    <Image Include="sprites\fliegt w0005.bmp" />
-    <Image Include="sprites\fliegt w0006.bmp" />
-    <Image Include="sprites\fliegt w0007.bmp" />
-    <Image Include="sprites\fliegt w0008.bmp" />
+    <Image Include="sprites\ball_sample1.png" />
+    <Image Include="sprites\ball_sample2.png" />
     <Image Include="sprites\logo_sample.png" />
     <Image Include="sprites\spr01.png" />
     <Image Include="sprites\spr01_nt.png" />
     <Image Include="sprites\spr02.png" />
     <Image Include="sprites\spr03.png" />
+    <Image Include="sprites\title_sample.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

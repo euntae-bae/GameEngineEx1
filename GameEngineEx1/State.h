@@ -20,7 +20,7 @@ public:
 	virtual void onExit() = 0;
 
 	virtual void handleEvents(Game *game) = 0;
-	virtual void update() = 0;
+	virtual void update(Game *game) = 0;
 	virtual void draw(Graphics *g) = 0;
 };
 

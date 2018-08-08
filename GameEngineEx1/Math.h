@@ -20,11 +20,13 @@ public:
 	float norm() const;
 	float getX() const;
 	float getY() const;
+	Vector2 getXY() const;
 	void setX(float dx);
 	void setY(float dy);
 	void setXY(float dx, float dy);
 	void setXY(const Vector2& rhs);
 	Vector2 operator+(const Vector2& rhs) const;
+	Vector2 operator-() const;
 	Vector2 operator-(const Vector2& rhs) const;
 	Vector2 operator*(const Vector2& rhs) const;
 	Vector2& operator=(const Vector2& rhs);
@@ -43,6 +45,10 @@ inline float Vector2::getX() const {
 
 inline float Vector2::getY() const {
 	return y;
+}
+
+inline Vector2 Vector2::getXY() const {
+	return Vector2(x, y);
 }
 
 inline void Vector2::setX(float dx) {
@@ -65,6 +71,10 @@ inline void Vector2::setXY(const Vector2& rhs) {
 
 inline Vector2 Vector2::operator+(const Vector2& rhs) const {
 	return Vector2(x + rhs.x, y + rhs.y);
+}
+
+inline Vector2 Vector2::operator-() const {
+	return Vector2(-x, -y);
 }
 
 inline Vector2 Vector2::operator-(const Vector2& rhs) const {
@@ -113,6 +123,10 @@ public:
 	int getY() const;
 	int getWidth() const;
 	int getHeight() const;
+	Rect getRect() const;
+	bool containsPoint(const Vector2& point) const;
+	bool intersectsRect(const Rect& rc) const;
+
 	void setX(int dx);
 	void setY(int dy);
 	void setXY(int dx, int dy);
@@ -137,6 +151,22 @@ inline int Rect::getHeight() const {
 	return height;
 }
 
+inline Rect Rect::getRect() const {
+	return Rect(x, y, width, height);
+}
+
+inline bool Rect::containsPoint(const Vector2& point) const {
+	int px = (int)point.getX();
+	int py = (int)point.getY();
+
+	return ((x <= px) && (x + width >= px)) &&
+		((y <= py) && (y + height >= py));
+}
+
+inline bool Rect::intersectsRect(const Rect& rc) const {
+	return true;
+}
+
 inline void Rect::setX(int dx) {
 	x = dx;
 }
@@ -151,8 +181,8 @@ inline void Rect::setXY(int dx, int dy) {
 }
 
 inline void Rect::setXY(const Vector2& vec) {
-	x = vec.getX();
-	y = vec.getY();
+	x = (int)vec.getX();
+	y = (int)vec.getY();
 }
 
 inline void Rect::setWidth(int dw) {
@@ -161,6 +191,14 @@ inline void Rect::setWidth(int dw) {
 
 inline void Rect::setHeight(int dh) {
 	height = dh;
+}
+
+inline double degreeToRad(double d) {
+	return d / 180 * PI;
+}
+
+inline double radToDegree(double r) {
+	return r / PI * 180;
 }
 
 #endif

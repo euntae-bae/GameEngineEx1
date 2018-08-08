@@ -53,6 +53,9 @@ public:
 	const ALLEGRO_EVENT& getEvent() const;
 	const char * getTitle() const;
 	void setTitle(const char *ntitle);
+	Graphics * getGraphics() const;
+	Input * getInput() const;
+	// Audio * getAudio() const;
 
 	void changeState(State *state); // 현재 상태(State)를 지정한 상태로 전환한다. 기존의 상태는 메모리에서 해제된다.
 	void pushState(State *state); // 현재 상태를 지정한 상태로 전환한다. 기존의 상태는 메모리에 그대로 유지된다.
@@ -60,7 +63,7 @@ public:
 	void cleanupStates(); // 모든 상태들을 메모리에서 해제한다.
 
 	virtual bool init(); // 게임 초기화 총괄(graphics.init(), game.init()....)
-	virtual void getInput();
+	virtual void getInputState();
 	virtual void handleEvents(); // 현재 상태에서의 이벤트를 처리한다.
 	virtual void update() = 0;
 	virtual void draw() = 0;
@@ -85,6 +88,14 @@ inline const char * Game::getTitle() const {
 inline void Game::setTitle(const char *ntitle) {
 	gameTitle = ntitle;
 	al_set_window_title(graphics->getDisplay(), gameTitle.c_str());
+}
+
+inline Graphics * Game::getGraphics() const {
+	return graphics;
+}
+
+inline Input * Game::getInput() const {
+	return input;
 }
 
 #endif

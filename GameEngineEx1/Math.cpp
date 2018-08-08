@@ -3,32 +3,32 @@
 Vector2::Vector2()
 	: Vector2(0.0f, 0.0f)
 {
-#ifdef _DEBUG
-	puts("Vector2()");
-#endif
+//#ifdef _DEBUG
+//	puts("Vector2()");
+//#endif
 }
 
 Vector2::Vector2(float _x, float _y)
 	: x(_x), y(_y)
 {
-#ifdef _DEBUG
-	puts("Vector2(float, float)");
-#endif
+//#ifdef _DEBUG
+//	puts("Vector2(float, float)");
+//#endif
 }
 
 Vector2::Vector2(const Vector2& rhs)
 	: Vector2(rhs.x, rhs.y)
 {
-#ifdef _DEBUG
-	puts("Vector2(const Vector2&)");
-#endif
+//#ifdef _DEBUG
+//	puts("Vector2(const Vector2&)");
+//#endif
 }
 
 Vector2::~Vector2()
 {
-#ifdef _DEBUG
-	puts("~Vector2()");
-#endif
+//#ifdef _DEBUG
+//	puts("~Vector2()");
+//#endif
 }
 
 Rect::Rect()

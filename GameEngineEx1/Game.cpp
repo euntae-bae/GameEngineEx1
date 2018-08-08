@@ -59,7 +59,7 @@ bool Game::init()
 	return true;
 }
 
-void Game::getInput()
+void Game::getInputState()
 {
 	input->getKeyState();
 	input->getMouseState();
@@ -69,7 +69,7 @@ void Game::loop()
 {
 	while (gameLoop) {
 		handleEvents();
-		getInput();
+		getInputState();
 		update();
 		draw();
 	}
@@ -94,6 +94,9 @@ void Game::changeState(State *state)
 	states.push_back(state);
 	states.back()->init();
 	*/
+#ifdef _DEBUG
+	puts("Game::changeState()");
+#endif
 	state->init();
 	if (!states.empty()) {
 		states.back()->onExit();
@@ -106,6 +109,9 @@ void Game::changeState(State *state)
 
 void Game::pushState(State *state)
 {
+#ifdef _DEBUG
+	puts("Game::pushState()");
+#endif
 	state->init();
 	if (!states.empty()) {
 		states.back()->pause();
@@ -117,6 +123,9 @@ void Game::pushState(State *state)
 
 void Game::popState()
 {
+#ifdef _DEBUG
+	puts("Game::popState()");
+#endif
 	if (!states.empty()) {
 		states.back()->onExit();
 		states.back()->cleanup();
@@ -131,7 +140,7 @@ void Game::popState()
 void Game::cleanupStates()
 {
 #ifdef _DEBUG
-	puts("Game::cleanup()");
+	puts("Game::cleanupStates()");
 #endif
 	if (!states.empty()) {
 		states.back()->onExit();
@@ -147,7 +156,9 @@ void Game::cleanupStates()
 
 void Game::cleanup()
 {
-	gameLoop = false;
+#ifdef _DEBUG
+	puts("Game::cleanup()");
+#endif
 	cleanupStates();
 	if (mainTimer)
 		al_destroy_timer(mainTimer);
@@ -169,5 +180,8 @@ void Game::quit()
 	puts("Game::quit()");
 #endif
 	cleanup();
+#ifdef _DEBUG
+	puts("cleanup 작업 완료");
+#endif
 	exit(0);
 }

@@ -12,11 +12,14 @@
 const int DEFAULT_SCREEN_WIDTH = 640;
 const int DEFAULT_SCREEN_HEIGHT = 480;
 
-#define COLOR_BLACK	al_map_rgb(0, 0, 0)
-#define COLOR_WHITE	al_map_rgb(255, 255, 255)
-#define COLOR_RED	al_map_rgb(255, 0, 0)
-#define COLOR_GREEN	al_map_rgb(0, 255, 0)
-#define COLOR_BLUE	al_map_rgb(0, 0, 255)
+#define COLOR_BLACK		al_map_rgb(0, 0, 0)
+#define COLOR_WHITE		al_map_rgb(255, 255, 255)
+#define COLOR_RED		al_map_rgb(255, 0, 0)
+#define COLOR_GREEN		al_map_rgb(0, 255, 0)
+#define COLOR_BLUE		al_map_rgb(0, 0, 255)
+#define COLOR_CYAN		al_map_rgb(0, 255, 255)
+#define COLOR_MAGENTA	al_map_rgb(255, 0, 255)
+#define COLOR_YELLOW	al_map_rgb(255, 255, 0)
 
 // TODO: version 0.07
 // 디스플레이 관련 연산 추가

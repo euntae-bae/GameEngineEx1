@@ -7,8 +7,15 @@
 class StateTitle : public State
 {
 private:
+	Sprite *bg;
 	Sprite *spr;
+	ALLEGRO_FONT *font;
+	Vector2 pos;
+	Vector2 dv;
+	float speed;
 public:
+	StateTitle() : bg(NULL), spr(NULL), font(NULL) {}
+
 	bool init();
 	void cleanup();
 
@@ -19,7 +26,7 @@ public:
 	void onExit();
 
 	void handleEvents(Game *game);
-	void update();
+	void update(Game *game);
 	void draw(Graphics *g);
 };
 

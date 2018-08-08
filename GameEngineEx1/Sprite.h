@@ -3,6 +3,10 @@
 
 #include "Renderable.h"
 
+// 2018/07/28
+// ALLEGRO_BITMAP을 그대로 사용하는 것은 확장성에 좋지 않을 것으로 보인다.
+// 래퍼 클래스로 Texture 클래스를 정의하는 것이 적절한 방법인가?
+
 // 텍스처(이미지)의 데이터
 // 쟁점1: Sprite 클래스의 기능을 어디까지로 제한할 것인가?
 // 쟁점2: 어떤 정보까지를 SpriteData에 담을 것인가?
@@ -66,6 +70,8 @@ public:
 	bool isFlipHorizontal() const;
 	bool isFlipVertical() const;
 
+	void setBitmap(ALLEGRO_BITMAP *bitmap);
+	void setBitmap(const char *filename);
 	void setFlipHorizontal(bool flip);
 	void setFlipVertical(bool flip);
 	void toggleFlipHorizontal();

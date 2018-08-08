@@ -50,6 +50,7 @@ public:
 	void setCenterPosition(const Vector2& dpos);
 	void setCenterX(float dx);
 	void setCenterY(float dy);
+	void setScale(float s);
 	void setScale(float dx, float dy);
 	void setScale(const Vector2& dscale);
 	void setScaleX(float dx);
@@ -160,6 +161,10 @@ inline void Renderable::setCenterX(float dx) {
 
 inline void Renderable::setCenterY(float dy) {
 	centerPos.setY(dy);
+}
+
+inline void Renderable::setScale(float s) {
+	scale.setXY(s, s);
 }
 
 inline void Renderable::setScale(float dx, float dy) {

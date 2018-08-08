@@ -12,6 +12,8 @@ private:
 	int count;
 
 public:
+	StateLogo() : logoImage(NULL), font(NULL) {}
+
 	bool init();
 	void cleanup();
 
@@ -22,7 +24,7 @@ public:
 	void onExit();
 
 	void handleEvents(Game *game);
-	void update();
+	void update(Game *game);
 	void draw(Graphics *g);
 };
 

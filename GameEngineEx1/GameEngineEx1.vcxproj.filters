@@ -39,9 +39,6 @@
     <ClCompile Include="Input.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Math.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Renderable.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -58,6 +55,15 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="StateTitle.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="StateLab1.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Math.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="StateLab2.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -95,6 +101,12 @@
     <ClInclude Include="StateTitle.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="StateLab1.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="StateLab2.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Font Include="fonts\consola.ttf">
@@ -102,33 +114,6 @@
     </Font>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="sprites\fliegt w0000.bmp">
-      <Filter>sprites</Filter>
-    </Image>
-    <Image Include="sprites\fliegt w0001.bmp">
-      <Filter>sprites</Filter>
-    </Image>
-    <Image Include="sprites\fliegt w0002.bmp">
-      <Filter>sprites</Filter>
-    </Image>
-    <Image Include="sprites\fliegt w0003.bmp">
-      <Filter>sprites</Filter>
-    </Image>
-    <Image Include="sprites\fliegt w0004.bmp">
-      <Filter>sprites</Filter>
-    </Image>
-    <Image Include="sprites\fliegt w0005.bmp">
-      <Filter>sprites</Filter>
-    </Image>
-    <Image Include="sprites\fliegt w0006.bmp">
-      <Filter>sprites</Filter>
-    </Image>
-    <Image Include="sprites\fliegt w0007.bmp">
-      <Filter>sprites</Filter>
-    </Image>
-    <Image Include="sprites\fliegt w0008.bmp">
-      <Filter>sprites</Filter>
-    </Image>
     <Image Include="sprites\spr01.png">
       <Filter>sprites</Filter>
     </Image>
@@ -142,6 +127,15 @@
       <Filter>sprites</Filter>
     </Image>
     <Image Include="sprites\logo_sample.png">
+      <Filter>sprites</Filter>
+    </Image>
+    <Image Include="sprites\title_sample.png">
+      <Filter>sprites</Filter>
+    </Image>
+    <Image Include="sprites\ball_sample1.png">
+      <Filter>sprites</Filter>
+    </Image>
+    <Image Include="sprites\ball_sample2.png">
       <Filter>sprites</Filter>
     </Image>
   </ItemGroup>
